@@ -17,14 +17,15 @@ public class Game {
 	
 	@GetMapping("/start")
 	public String startGame() {
-		service.reset();
-		return "READY";
+		//service.reset();
+		
+		return service.init();
 	}
 	
-	@GetMapping("/start/{col}")
-	public String play(@PathVariable int col) {
+	@GetMapping("/start/{user}/{col}")
+	public String play(@PathVariable String user, @PathVariable int col) {
 		if(col < 0  || col > 6)
 			return "Invalid";
-		return service.add(col);
+		return service.add(user, col);
 	}
 }
